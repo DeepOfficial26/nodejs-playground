@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scaling Strategies - Node.js Interview Playground</title>
+    <%- include('../partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('../partials/header') %>
+        <%- include('../partials/nav') %>
+        
+        <div class="card">
+            <h2>Scaling Strategies</h2>
+            <p>Understanding horizontal vs vertical scaling and when to use each approach.</p>
+            
+            <h3>Vertical Scaling (Scale Up)</h3>
+            <div class="code-block">
+                <pre><code>// Add more resources to existing server
+- Increase CPU cores
+- Increase RAM
+- Increase storage
+- Upgrade hardware</code></pre>
+            </div>
+            
+            <div class="key-points">
+                <h3>Pros:</h3>
+                <ul>
+                    <li>Simpler architecture</li>
+                    <li>No code changes needed</li>
+                    <li>Better for single-threaded bottlenecks</li>
+                </ul>
+                <h3>Cons:</h3>
+                <ul>
+                    <li>Limited by hardware maximums</li>
+                    <li>Single point of failure</li>
+                    <li>More expensive at scale</li>
+                </ul>
+            </div>
+            
+            <h3>Horizontal Scaling (Scale Out)</h3>
+            <div class="code-block">
+                <pre><code>// Add more servers
+- Multiple instances
+- Load balancer
+- Stateless application
+- Shared state (Redis, DB)</code></pre>
+            </div>
+            
+            <div class="key-points">
+                <h3>Pros:</h3>
+                <ul>
+                    <li>Unlimited scaling potential</li>
+                    <li>Better fault tolerance</li>
+                    <li>Cost-effective with commodity hardware</li>
+                </ul>
+                <h3>Cons:</h3>
+                <ul>
+                    <li>More complex architecture</li>
+                    <li>Requires stateless design</li>
+                    <li>Need load balancing</li>
+                    <li>Shared state management</li>
+                </ul>
+            </div>
+            
+            <h3>When to Use Each</h3>
+            <div class="topic-grid">
+                <div class="topic-card">
+                    <h3>Vertical Scaling</h3>
+                    <ul>
+                        <li>Small to medium applications</li>
+                        <li>CPU-intensive tasks</li>
+                        <li>Single-threaded bottlenecks</li>
+                        <li>Simpler deployment</li>
+                    </ul>
+                </div>
+                <div class="topic-card">
+                    <h3>Horizontal Scaling</h3>
+                    <ul>
+                        <li>High traffic applications</li>
+                        <li>Need high availability</li>
+                        <li>Stateless applications</li>
+                        <li>Cloud-native architecture</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <%- include('../partials/footer') %>
+    </div>
+</body>
+</html>

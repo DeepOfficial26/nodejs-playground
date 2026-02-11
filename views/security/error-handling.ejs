@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Handling - Node.js Interview Playground</title>
+    <%- include('../partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('../partials/header') %>
+        <%- include('../partials/nav') %>
+        
+        <div class="card">
+            <h2>Error Handling</h2>
+            <p>Understanding uncaughtException vs unhandledRejection and proper error handling.</p>
+            
+            <h3>uncaughtException</h3>
+            <div class="code-block">
+                <pre><code>// Synchronous errors not caught
+process.on('uncaughtException', (error) => {
+  console.error('Uncaught exception:', error);
+  // WHY: Log and exit - app is in unknown state
+  process.exit(1);
+});
+
+// Example
+throw new Error('Uncaught!');</code></pre>
+            </div>
+            <p><strong>When:</strong> Synchronous code throws error without try/catch</p>
+            
+            <h3>unhandledRejection</h3>
+            <div class="code-block">
+                <pre><code>// Promise rejection not handled
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled rejection:', reason);
+  // WHY: Log and handle - app might still be OK
+});
+
+// Example
+Promise.reject(new Error('Unhandled!'));</code></pre>
+            </div>
+            <p><strong>When:</strong> Promise rejection without .catch()</p>
+            
+            <div class="key-points">
+                <h3>Best Practices:</h3>
+                <ul>
+                    <li>Always handle promise rejections</li>
+                    <li>Use try/catch for async/await</li>
+                    <li>Log errors before exiting</li>
+                    <li>Graceful shutdown on uncaughtException</li>
+                    <li>Monitor unhandledRejection (might indicate bugs)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <%- include('../partials/footer') %>
+    </div>
+</body>
+</html>

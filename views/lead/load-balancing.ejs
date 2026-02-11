@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load Balancing - Node.js Interview Playground</title>
+    <%- include('../partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('../partials/header') %>
+        <%- include('../partials/nav') %>
+        
+        <div class="card">
+            <h2>Load Balancing Strategies</h2>
+            <p>Different algorithms for distributing traffic across multiple servers.</p>
+            
+            <h3>Load Balancing Algorithms</h3>
+            
+            <h3>1. Round Robin</h3>
+            <div class="code-block">
+                <pre><code>// Distribute requests sequentially
+Request 1 → Server 1
+Request 2 → Server 2
+Request 3 → Server 3
+Request 4 → Server 1 (cycle repeats)</code></pre>
+            </div>
+            <p><strong>Use when:</strong> All servers have similar capacity</p>
+            
+            <h3>2. Least Connections</h3>
+            <div class="code-block">
+                <pre><code>// Route to server with fewest active connections
+Server 1: 10 connections
+Server 2: 5 connections  ← Route here
+Server 3: 15 connections</code></pre>
+            </div>
+            <p><strong>Use when:</strong> Requests have varying processing times</p>
+            
+            <h3>3. Weighted Round Robin</h3>
+            <div class="code-block">
+                <pre><code>// Assign weights based on server capacity
+Server 1 (weight: 3) → 3 requests
+Server 2 (weight: 2) → 2 requests
+Server 3 (weight: 1) → 1 request</code></pre>
+            </div>
+            <p><strong>Use when:</strong> Servers have different capacities</p>
+            
+            <h3>4. IP Hash</h3>
+            <div class="code-block">
+                <pre><code>// Hash client IP to determine server
+hash(clientIP) % serverCount = serverIndex
+// Same client always goes to same server</code></pre>
+            </div>
+            <p><strong>Use when:</strong> Need sticky sessions</p>
+            
+            <div class="key-points">
+                <h3>Load Balancer Types:</h3>
+                <ul>
+                    <li><strong>Layer 4 (Transport):</strong> Routes based on IP and port</li>
+                    <li><strong>Layer 7 (Application):</strong> Routes based on HTTP headers, URL, etc.</li>
+                    <li><strong>Hardware:</strong> Dedicated load balancer devices</li>
+                    <li><strong>Software:</strong> Nginx, HAProxy, AWS ELB</li>
+                </ul>
+            </div>
+        </div>
+        
+        <%- include('../partials/footer') %>
+    </div>
+</body>
+</html>

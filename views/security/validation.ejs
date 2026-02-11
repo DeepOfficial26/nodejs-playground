@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Validation - Node.js Interview Playground</title>
+    <%- include('../partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('../partials/header') %>
+        <%- include('../partials/nav') %>
+        
+        <div class="card">
+            <h2>Input Validation</h2>
+            <p>Sanitize and validate user input to prevent security vulnerabilities.</p>
+            
+            <h3>Validation Rules</h3>
+            <div class="code-block">
+                <pre><code>// Validate input
+const rules = {
+  required: true,
+  type: 'email',
+  minLength: 5,
+  maxLength: 100,
+  pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+};
+
+const result = validateInput(input, rules);
+if (!result.valid) {
+  return { error: result.errors };
+}</code></pre>
+            </div>
+            
+            <h3>Sanitization</h3>
+            <div class="code-block">
+                <pre><code>// Prevent XSS
+function sanitizeHtml(input) {
+  return input
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;');
+}</code></pre>
+            </div>
+            
+            <div class="key-points">
+                <h3>Best Practices:</h3>
+                <ul>
+                    <li>Validate on both client and server</li>
+                    <li>Whitelist approach (allow only known good)</li>
+                    <li>Sanitize before storing in database</li>
+                    <li>Use parameterized queries (prevent SQL injection)</li>
+                    <li>EJS auto-escapes by default (use <%- %> carefully)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <%- include('../partials/footer') %>
+    </div>
+</body>
+</html>

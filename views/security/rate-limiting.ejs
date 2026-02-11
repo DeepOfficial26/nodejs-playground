@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate Limiting - Node.js Interview Playground</title>
+    <%- include('../partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('../partials/header') %>
+        <%- include('../partials/nav') %>
+        
+        <div class="card">
+            <h2>Rate Limiting</h2>
+            <p>Protect your API from abuse and ensure fair resource usage.</p>
+            
+            <h3>Strategies</h3>
+            
+            <h3>1. Fixed Window</h3>
+            <div class="code-block">
+                <pre><code>// Simple but allows bursts at window boundaries
+if (requestsInWindow >= maxRequests) {
+  return false; // Rate limited
+}
+requestsInWindow++;</code></pre>
+            </div>
+            
+            <h3>2. Sliding Window</h3>
+            <div class="code-block">
+                <pre><code>// More accurate, prevents bursts
+const now = Date.now();
+const validRequests = requests.filter(
+  time => now - time < windowMs
+);
+if (validRequests.length >= maxRequests) {
+  return false;
+}</code></pre>
+            </div>
+            
+            <h3>3. Token Bucket</h3>
+            <div class="code-block">
+                <pre><code>// Allows bursts with refill
+tokens = Math.min(capacity, tokens + refillRate * timePassed);
+if (tokens >= 1) {
+  tokens -= 1;
+  return true;
+}
+return false;</code></pre>
+            </div>
+            
+            <div class="key-points">
+                <h3>Implementation Considerations:</h3>
+                <ul>
+                    <li>In-memory vs distributed (Redis)</li>
+                    <li>Per-IP vs per-user vs per-endpoint</li>
+                    <li>Response headers (X-RateLimit-*)</li>
+                    <li>Graceful degradation</li>
+                </ul>
+            </div>
+        </div>
+        
+        <%- include('../partials/footer') %>
+    </div>
+</body>
+</html>

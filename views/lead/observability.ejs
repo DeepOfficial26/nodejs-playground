@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Observability - Node.js Interview Playground</title>
+    <%- include('../partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('../partials/header') %>
+        <%- include('../partials/nav') %>
+        
+        <div class="card">
+            <h2>Observability</h2>
+            <p>The three pillars of observability: Logs, Metrics, and Traces.</p>
+            
+            <h3>1. Logs</h3>
+            <div class="code-block">
+                <pre><code>// Structured logging
+logger.info('User login', {
+  userId: '123',
+  ip: '192.168.1.1',
+  timestamp: Date.now()
+});
+
+// Log levels
+logger.error('Critical error', error);
+logger.warn('Warning message');
+logger.info('Info message');
+logger.debug('Debug details');</code></pre>
+            </div>
+            <p><strong>Use for:</strong> Debugging, audit trails, understanding what happened</p>
+            
+            <h3>2. Metrics</h3>
+            <div class="code-block">
+                <pre><code>// Counter
+metrics.increment('requests.total');
+metrics.increment('requests.total', { status: '200' });
+
+// Gauge
+metrics.gauge('active.connections', connectionCount);
+
+// Histogram
+metrics.histogram('request.duration', duration, {
+  method: 'GET',
+  endpoint: '/api/users'
+});</code></pre>
+            </div>
+            <p><strong>Use for:</strong> Performance monitoring, alerting, capacity planning</p>
+            
+            <h3>3. Traces</h3>
+            <div class="code-block">
+                <pre><code>// Distributed tracing
+const span = tracer.startSpan('processOrder');
+span.setTag('orderId', orderId);
+span.setTag('userId', userId);
+
+try {
+  await processOrder(orderId);
+  span.finish();
+} catch (error) {
+  span.setTag('error', true);
+  span.log({ error: error.message });
+  span.finish();
+}</code></pre>
+            </div>
+            <p><strong>Use for:</strong> Understanding request flow across services, latency analysis</p>
+            
+            <div class="key-points">
+                <h3>Best Practices:</h3>
+                <ul>
+                    <li><strong>Structured Logging:</strong> Use JSON format for easy parsing</li>
+                    <li><strong>Correlation IDs:</strong> Track requests across services</li>
+                    <li><strong>Sampling:</strong> Sample traces in high-traffic systems</li>
+                    <li><strong>Alerting:</strong> Set up alerts for critical metrics</li>
+                    <li><strong>Retention:</strong> Define log retention policies</li>
+                </ul>
+                
+                <h3>Tools:</h3>
+                <ul>
+                    <li><strong>Logs:</strong> ELK Stack, Splunk, CloudWatch</li>
+                    <li><strong>Metrics:</strong> Prometheus, Datadog, New Relic</li>
+                    <li><strong>Traces:</strong> Jaeger, Zipkin, AWS X-Ray</li>
+                </ul>
+            </div>
+        </div>
+        
+        <%- include('../partials/footer') %>
+    </div>
+</body>
+</html>

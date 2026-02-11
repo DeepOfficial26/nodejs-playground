@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graceful Shutdown - Node.js Interview Playground</title>
+    <%- include('../partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('../partials/header') %>
+        <%- include('../partials/nav') %>
+        
+        <div class="card">
+            <h2>Graceful Shutdown</h2>
+            <p>Properly shutting down Node.js applications to prevent data loss and ensure clean resource cleanup.</p>
+            
+            <h3>Shutdown Process</h3>
+            <div class="code-block">
+                <pre><code>const shutdown = (signal) => {
+  console.log(`${signal} received, starting graceful shutdown...`);
+  
+  // 1. Stop accepting new connections
+  server.close(() => {
+    console.log('HTTP server closed');
+    
+    // 2. Close database connections
+    db.close();
+    
+    // 3. Close Redis connections
+    redis.quit();
+    
+    // 4. Exit process
+    console.log('Graceful shutdown complete');
+    process.exit(0);
+  });
+  
+  // Force shutdown after timeout
+  setTimeout(() => {
+    console.error('Forced shutdown after timeout');
+    process.exit(1);
+  }, 10000);
+};
+
+process.on('SIGTERM', () => shutdown('SIGTERM'));
+process.on('SIGINT', () => shutdown('SIGINT'));</code></pre>
+            </div>
+            
+            <div class="key-points">
+                <h3>Steps:</h3>
+                <ul>
+                    <li>1. Stop accepting new requests</li>
+                    <li>2. Finish processing current requests</li>
+                    <li>3. Close database connections</li>
+                    <li>4. Close other resources (Redis, file handles, etc.)</li>
+                    <li>5. Exit process cleanly</li>
+                </ul>
+                
+                <h3>Signals:</h3>
+                <ul>
+                    <li><strong>SIGTERM:</strong> Termination signal (from process manager)</li>
+                    <li><strong>SIGINT:</strong> Interrupt signal (Ctrl+C)</li>
+                    <li><strong>Timeout:</strong> Force shutdown if graceful shutdown takes too long</li>
+                </ul>
+            </div>
+        </div>
+        
+        <%- include('../partials/footer') %>
+    </div>
+</body>
+</html>

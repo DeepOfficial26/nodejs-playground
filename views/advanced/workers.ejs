@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workers Comparison - Node.js Interview Playground</title>
+    <%- include('../partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('../partials/header') %>
+        <%- include('../partials/nav') %>
+        
+        <div class="card">
+            <h2>Workers Comparison</h2>
+            <p>Understanding when to use worker_threads vs child_process.</p>
+            
+            <div class="topic-grid">
+                <div class="topic-card">
+                    <h3>worker_threads</h3>
+                    <p><%= comparison.workerThreads.useCase %></p>
+                    <h4>Pros:</h4>
+                    <ul>
+                        <% comparison.workerThreads.pros.forEach(pro => { %>
+                            <li><%= pro %></li>
+                        <% }); %>
+                    </ul>
+                    <h4>Cons:</h4>
+                    <ul>
+                        <% comparison.workerThreads.cons.forEach(con => { %>
+                            <li><%= con %></li>
+                        <% }); %>
+                    </ul>
+                </div>
+                
+                <div class="topic-card">
+                    <h3>child_process</h3>
+                    <p><%= comparison.childProcess.useCase %></p>
+                    <h4>Pros:</h4>
+                    <ul>
+                        <% comparison.childProcess.pros.forEach(pro => { %>
+                            <li><%= pro %></li>
+                        <% }); %>
+                    </ul>
+                    <h4>Cons:</h4>
+                    <ul>
+                        <% comparison.childProcess.cons.forEach(con => { %>
+                            <li><%= con %></li>
+                        <% }); %>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>When to Use</h3>
+            <div class="topic-grid">
+                <div class="topic-card">
+                    <h3>worker_threads</h3>
+                    <ul>
+                        <% comparison.whenToUse.workerThreads.forEach(use => { %>
+                            <li><%= use %></li>
+                        <% }); %>
+                    </ul>
+                </div>
+                <div class="topic-card">
+                    <h3>child_process</h3>
+                    <ul>
+                        <% comparison.whenToUse.childProcess.forEach(use => { %>
+                            <li><%= use %></li>
+                        <% }); %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <%- include('../partials/footer') %>
+    </div>
+</body>
+</html>

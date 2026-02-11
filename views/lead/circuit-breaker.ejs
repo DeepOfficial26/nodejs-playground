@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circuit Breaker Pattern - Node.js Interview Playground</title>
+    <%- include('../partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('../partials/header') %>
+        <%- include('../partials/nav') %>
+        
+        <div class="card">
+            <h2>Circuit Breaker Pattern</h2>
+            <p>A resilience pattern that prevents cascading failures in distributed systems.</p>
+            
+            <h3>Circuit Breaker States</h3>
+            
+            <h3>1. Closed (Normal Operation)</h3>
+            <div class="code-block">
+                <pre><code>// Requests flow through normally
+if (circuitBreaker.state === 'closed') {
+  try {
+    result = await service.call();
+    return result;
+  } catch (error) {
+    failureCount++;
+    if (failureCount >= threshold) {
+      circuitBreaker.state = 'open';
+    }
+  }
+}</code></pre>
+            </div>
+            
+            <h3>2. Open (Failing Fast)</h3>
+            <div class="code-block">
+                <pre><code>// Immediately reject requests
+if (circuitBreaker.state === 'open') {
+  throw new Error('Circuit breaker is open');
+  // Don't call the service
+}</code></pre>
+            </div>
+            
+            <h3>3. Half-Open (Testing Recovery)</h3>
+            <div class="code-block">
+                <pre><code>// Allow limited requests to test if service recovered
+if (circuitBreaker.state === 'half-open') {
+  try {
+    result = await service.call();
+    if (success) {
+      circuitBreaker.state = 'closed';
+      failureCount = 0;
+    }
+  } catch (error) {
+    circuitBreaker.state = 'open';
+  }
+}</code></pre>
+            </div>
+            
+            <div class="key-points">
+                <h3>Benefits:</h3>
+                <ul>
+                    <li>Prevents cascading failures</li>
+                    <li>Fails fast instead of timing out</li>
+                    <li>Automatic recovery detection</li>
+                    <li>Protects downstream services</li>
+                </ul>
+                
+                <h3>Implementation Considerations:</h3>
+                <ul>
+                    <li>Failure threshold (e.g., 5 failures)</li>
+                    <li>Timeout period (e.g., 60 seconds)</li>
+                    <li>Success threshold for half-open (e.g., 2 successes)</li>
+                    <li>Monitoring and alerting</li>
+                </ul>
+            </div>
+        </div>
+        
+        <%- include('../partials/footer') %>
+    </div>
+</body>
+</html>

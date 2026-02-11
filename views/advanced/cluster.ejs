@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cluster Mode - Node.js Interview Playground</title>
+    <%- include('../partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('../partials/header') %>
+        <%- include('../partials/nav') %>
+        
+        <div class="card">
+            <h2>Cluster Mode</h2>
+            <p>Utilize all CPU cores for better performance with Node.js cluster module.</p>
+            
+            <h3>How Cluster Works</h3>
+            <div class="code-block">
+                <pre><code>import cluster from 'cluster';
+import os from 'os';
+
+if (cluster.isPrimary) {
+  // Primary process - creates workers
+  const numWorkers = os.cpus().length;
+  for (let i = 0; i < numWorkers; i++) {
+    cluster.fork();
+  }
+} else {
+  // Worker process - handles requests
+  const server = http.createServer((req, res) => {
+    res.end('Hello from worker ' + process.pid);
+  });
+  server.listen(3000);
+}</code></pre>
+            </div>
+            
+            <div class="key-points">
+                <h3>Key Concepts:</h3>
+                <ul>
+                    <li><strong>Primary Process:</strong> Main process that manages workers</li>
+                    <li><strong>Worker Process:</strong> Child process that handles requests</li>
+                    <li><strong>Shared Port:</strong> Workers share the same server port</li>
+                    <li><strong>Load Distribution:</strong> OS handles load balancing</li>
+                    <li><strong>Fault Tolerance:</strong> Worker crashes don't affect others</li>
+                </ul>
+            </div>
+        </div>
+        
+        <%- include('../partials/footer') %>
+    </div>
+</body>
+</html>
