@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate Limiter - Node.js Interview Playground</title>
+    <%- include('partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('partials/header') %>
+        <%- include('partials/nav') %>
+        
+        <div class="card">
+            <h2>Rate Limiter - Machine Coding Round</h2>
+            
+            <h3>Requirements</h3>
+            <ul>
+                <li>Token bucket algorithm</li>
+                <li>Sliding window algorithm</li>
+                <li>Per-IP rate limiting</li>
+                <li>Configurable limits</li>
+            </ul>
+            
+            <h3>Constraints</h3>
+            <ul>
+                <li>In-memory (can extend to Redis)</li>
+                <li>Thread-safe (single-threaded Node.js)</li>
+                <li>O(1) operations where possible</li>
+            </ul>
+            
+            <h3>Implementation</h3>
+            <div class="code-block">
+                <pre><code>// Token Bucket Rate Limiter
+class TokenBucketRateLimiter {
+  constructor(capacity, refillRate) {
+    this.capacity = capacity;
+    this.refillRate = refillRate; // tokens per second
+    this.buckets = new Map();
+  }
+  
+  isAllowed(identifier) {
+    const now = Date.now();
+    let bucket = this.buckets.get(identifier);
+    
+    if (!bucket) {
+      bucket = { tokens: this.capacity, lastRefill: now };
+      this.buckets.set(identifier, bucket);
+      return true;
+    }
+    
+    // Refill tokens
+    const timePassed = (now - bucket.lastRefill) / 1000;
+    bucket.tokens = Math.min(
+      this.capacity,
+      bucket.tokens + (timePassed * this.refillRate)
+    );
+    bucket.lastRefill = now;
+    
+    if (bucket.tokens >= 1) {
+      bucket.tokens -= 1;
+      return true;
+    }
+    
+    return false;
+  }
+}</code></pre>
+            </div>
+            
+            <div class="key-points">
+                <h3>Interview Discussion Points:</h3>
+                <ul>
+                    <li>Token bucket vs sliding window trade-offs</li>
+                    <li>Distributed rate limiting with Redis</li>
+                    <li>Handling clock skew in distributed systems</li>
+                    <li>Memory optimization for large-scale systems</li>
+                    <li>Rate limiting strategies (per IP, per user, per endpoint)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <%- include('partials/footer') %>
+    </div>
+</body>
+</html>

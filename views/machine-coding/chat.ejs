@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Server - Node.js Interview Playground</title>
+    <%- include('partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('partials/header') %>
+        <%- include('partials/nav') %>
+        
+        <div class="card">
+            <h2>Chat Server - Machine Coding Round</h2>
+            
+            <h3>Requirements</h3>
+            <ul>
+                <li>WebSocket-based chat</li>
+                <li>Broadcast messages</li>
+                <li>User management</li>
+                <li>Room support (optional)</li>
+            </ul>
+            
+            <div class="key-points">
+                <h3>Interview Discussion Points:</h3>
+                <ul>
+                    <li>WebSocket vs HTTP polling</li>
+                    <li>Connection management</li>
+                    <li>Message persistence</li>
+                    <li>Scaling WebSocket servers</li>
+                    <li>Handling disconnections gracefully</li>
+                </ul>
+            </div>
+        </div>
+        
+        <%- include('partials/footer') %>
+    </div>
+</body>
+</html>

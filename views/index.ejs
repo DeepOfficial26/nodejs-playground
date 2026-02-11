@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Node.js Interview Playground</title>
+    <%- include('partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('partials/header') %>
+        <%- include('partials/nav') %>
+        
+        <div class="card">
+            <h2>Welcome to Node.js Interview Playground</h2>
+            <p>A comprehensive learning platform covering Node.js concepts from Beginner to Lead/Architect level with extensive Machine Coding Round scenarios.</p>
+            
+            <div class="key-points">
+                <h3>What You'll Learn:</h3>
+                <ul>
+                    <li>Node.js runtime architecture (V8 + libuv)</li>
+                    <li>Event loop internals and phases</li>
+                    <li>Async patterns and concurrency</li>
+                    <li>Streams, buffers, and backpressure</li>
+                    <li>Worker threads, cluster mode</li>
+                    <li>System design and scaling strategies</li>
+                    <li>Security best practices</li>
+                    <li>Machine coding round implementations</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="topic-grid">
+            <% levels.forEach(level => { %>
+                <div class="topic-card">
+                    <h3><%= level.name %></h3>
+                    <p><%= level.description %></p>
+                    <a href="<%= level.path %>">Explore →</a>
+                </div>
+            <% }); %>
+        </div>
+        
+        <%- include('partials/footer') %>
+    </div>
+</body>
+</html>

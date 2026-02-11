@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pub-Sub System - Node.js Interview Playground</title>
+    <%- include('partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('partials/header') %>
+        <%- include('partials/nav') %>
+        
+        <div class="card">
+            <h2>Pub-Sub System - Machine Coding Round</h2>
+            
+            <h3>Requirements</h3>
+            <ul>
+                <li>Publish messages to topics</li>
+                <li>Subscribe to topics</li>
+                <li>Unsubscribe</li>
+                <li>Multiple subscribers per topic</li>
+                <li>Message persistence (optional)</li>
+            </ul>
+            
+            <div class="key-points">
+                <h3>Interview Discussion Points:</h3>
+                <ul>
+                    <li>Observer pattern implementation</li>
+                    <li>Event-driven architecture</li>
+                    <li>Message ordering guarantees</li>
+                    <li>At-least-once vs exactly-once delivery</li>
+                    <li>Distributed pub-sub with Redis/RabbitMQ</li>
+                </ul>
+            </div>
+        </div>
+        
+        <%- include('partials/footer') %>
+    </div>
+</body>
+</html>

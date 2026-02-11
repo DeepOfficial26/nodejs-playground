@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async Patterns - Node.js Interview Playground</title>
+    <%- include('partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('partials/header') %>
+        <%- include('partials/nav') %>
+        
+        <div class="card">
+            <h2>Async Patterns</h2>
+            <p>Understanding Promises, async/await, and execution queues.</p>
+            
+            <h3>Execution Order</h3>
+            <div class="code-block">
+                <pre><code><% demo.executionOrder.forEach(item => { %>Step <%= item.step %>: [<%= item.type %>] <%= item.message %>
+<% }); %></code></pre>
+            </div>
+            
+            <h3>Queue Types</h3>
+            <div class="topic-grid">
+                <div class="topic-card">
+                    <h3>Call Stack</h3>
+                    <p><%= demo.explanation.callStack %></p>
+                </div>
+                <div class="topic-card">
+                    <h3>Microtask Queue</h3>
+                    <p><%= demo.explanation.microtaskQueue %></p>
+                </div>
+                <div class="topic-card">
+                    <h3>Macrotask Queue</h3>
+                    <p><%= demo.explanation.macrotaskQueue %></p>
+                </div>
+                <div class="topic-card">
+                    <h3>nextTick</h3>
+                    <p><%= demo.explanation.nextTick %></p>
+                </div>
+            </div>
+            
+            <div class="key-points">
+                <h3>Key Points:</h3>
+                <ul>
+                    <% demo.keyPoints.forEach(point => { %>
+                        <li><%= point %></li>
+                    <% }); %>
+                </ul>
+            </div>
+        </div>
+        
+        <%- include('partials/footer') %>
+    </div>
+</body>
+</html>

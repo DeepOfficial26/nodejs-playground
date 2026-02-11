@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beginner Level - Node.js Interview Playground</title>
+    <%- include('partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('partials/header') %>
+        <%- include('partials/nav') %>
+        
+        <div class="card">
+            <h2>Beginner Level - Node.js Basics</h2>
+            <p>Master the fundamentals of Node.js runtime, modules, event loop, and core APIs.</p>
+        </div>
+        
+        <div class="topic-grid">
+            <% topics.forEach(topic => { %>
+                <div class="topic-card">
+                    <h3><%= topic.name %></h3>
+                    <p><%= topic.description %></p>
+                    <a href="<%= topic.path %>">Learn →</a>
+                </div>
+            <% }); %>
+        </div>
+        
+        <%- include('partials/footer') %>
+    </div>
+</body>
+</html>

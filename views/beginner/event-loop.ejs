@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Loop Basics - Node.js Interview Playground</title>
+    <%- include('partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('partials/header') %>
+        <%- include('partials/nav') %>
+        
+        <div class="card">
+            <h2>Event Loop Basics</h2>
+            <p>Understanding how Node.js handles asynchronous operations.</p>
+            
+            <h3>Execution Order Demo</h3>
+            <div class="code-block">
+                <pre><code><% demo.results.forEach(result => { %>[<%= result.type %>] <%= result.message %>
+<% }); %></code></pre>
+            </div>
+            
+            <div class="key-points">
+                <h3>Key Points:</h3>
+                <ul>
+                    <% demo.keyPoints.forEach(point => { %>
+                        <li><%= point %></li>
+                    <% }); %>
+                </ul>
+            </div>
+            
+            <h3>Explanation</h3>
+            <div class="code-block">
+                <pre><code>Execution Order:
+1. Synchronous code runs first
+2. process.nextTick (highest priority)
+3. Microtasks (Promises)
+4. Macrotasks (setTimeout, setInterval)
+5. I/O callbacks
+6. setImmediate callbacks</code></pre>
+            </div>
+        </div>
+        
+        <%- include('partials/footer') %>
+    </div>
+</body>
+</html>

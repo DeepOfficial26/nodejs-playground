@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP Server Basics - Node.js Interview Playground</title>
+    <%- include('partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('partials/header') %>
+        <%- include('partials/nav') %>
+        
+        <div class="card">
+            <h2>HTTP Server Basics</h2>
+            <p>Creating HTTP servers with Node.js http module.</p>
+            
+            <h3>Simple HTTP Server</h3>
+            <div class="code-block">
+                <pre><code>import http from 'http';
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Hello from Node.js!');
+});
+
+server.listen(3000, () => {
+  console.log('Server running on port 3000');
+});</code></pre>
+            </div>
+            
+            <div class="key-points">
+                <h3>Key Concepts:</h3>
+                <ul>
+                    <li><strong>http.createServer():</strong> Creates HTTP server</li>
+                    <li><strong>Request handler:</strong> Function that handles each request</li>
+                    <li><strong>Response object:</strong> Used to send response to client</li>
+                    <li><strong>Non-blocking:</strong> Server handles multiple requests concurrently</li>
+                    <li><strong>Event-driven:</strong> Uses event loop for request handling</li>
+                </ul>
+            </div>
+        </div>
+        
+        <%- include('partials/footer') %>
+    </div>
+</body>
+</html>

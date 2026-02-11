@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload Service - Node.js Interview Playground</title>
+    <%- include('partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('partials/header') %>
+        <%- include('partials/nav') %>
+        
+        <div class="card">
+            <h2>File Upload Service - Machine Coding Round</h2>
+            
+            <h3>Requirements</h3>
+            <ul>
+                <li>Streaming upload</li>
+                <li>Size limit enforcement</li>
+                <li>Progress tracking</li>
+                <li>Multiple file support</li>
+                <li>File validation</li>
+            </ul>
+            
+            <h3>Key Implementation Details</h3>
+            <div class="code-block">
+                <pre><code>// Use streams for memory efficiency
+const pipeline = require('stream/promises').pipeline;
+
+async function uploadFile(fileStream, filename) {
+  // Track progress
+  const progressStream = new Transform({
+    transform(chunk, encoding, callback) {
+      uploadedBytes += chunk.length;
+      // Check size limit
+      // Report progress
+      callback(null, chunk);
+    }
+  });
+  
+  await pipeline(fileStream, progressStream, writeStream);
+}</code></pre>
+            </div>
+            
+            <div class="key-points">
+                <h3>Interview Discussion Points:</h3>
+                <ul>
+                    <li>Why streams over buffering?</li>
+                    <li>Backpressure handling</li>
+                    <li>Resumable uploads</li>
+                    <li>Chunked upload strategy</li>
+                    <li>Storage options (local, S3, etc.)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <%- include('partials/footer') %>
+    </div>
+</body>
+</html>

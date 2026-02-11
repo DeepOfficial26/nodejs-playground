@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LRU Cache - Node.js Interview Playground</title>
+    <%- include('partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('partials/header') %>
+        <%- include('partials/nav') %>
+        
+        <div class="card">
+            <h2>LRU Cache - Machine Coding Round</h2>
+            
+            <h3>Requirements</h3>
+            <ul>
+                <li>Least Recently Used eviction</li>
+                <li>O(1) get and put operations</li>
+                <li>Configurable capacity</li>
+                <li>TTL support (optional)</li>
+            </ul>
+            
+            <h3>Implementation Strategy</h3>
+            <div class="code-block">
+                <pre><code>// Use doubly-linked list + hash map for O(1) operations
+// Head = most recently used
+// Tail = least recently used
+
+class LRUCache {
+  constructor(capacity) {
+    this.capacity = capacity;
+    this.cache = new Map(); // O(1) lookup
+    this.head = null;
+    this.tail = null;
+  }
+  
+  get(key) {
+    // Move to head (most recently used)
+    // O(1) operation
+  }
+  
+  put(key, value) {
+    // Add/update and move to head
+    // Evict tail if over capacity
+    // O(1) operation
+  }
+}</code></pre>
+            </div>
+            
+            <div class="key-points">
+                <h3>Interview Discussion Points:</h3>
+                <ul>
+                    <li>Why doubly-linked list + hash map?</li>
+                    <li>Time complexity analysis</li>
+                    <li>Space complexity</li>
+                    <li>Thread-safety considerations</li>
+                    <li>Distributed cache with Redis</li>
+                </ul>
+            </div>
+        </div>
+        
+        <%- include('partials/footer') %>
+    </div>
+</body>
+</html>

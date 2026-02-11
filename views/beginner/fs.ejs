@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File System Operations - Node.js Interview Playground</title>
+    <%- include('partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('partials/header') %>
+        <%- include('partials/nav') %>
+        
+        <div class="card">
+            <h2>File System Operations</h2>
+            <p>Understanding fs module and async file operations.</p>
+            
+            <h3>Examples</h3>
+            <% examples.examples.forEach(example => { %>
+                <div class="code-block">
+                    <pre><code><%= example.operation %>: <%= typeof example.result === 'object' ? JSON.stringify(example.result, null, 2) : example.result %></code></pre>
+                </div>
+            <% }); %>
+            
+            <div class="key-points">
+                <h3>Key Points:</h3>
+                <ul>
+                    <% examples.keyPoints.forEach(point => { %>
+                        <li><%= point %></li>
+                    <% }); %>
+                </ul>
+            </div>
+        </div>
+        
+        <%- include('partials/footer') %>
+    </div>
+</body>
+</html>

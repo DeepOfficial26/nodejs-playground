@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Coding Rounds - Node.js Interview Playground</title>
+    <%- include('partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('partials/header') %>
+        <%- include('partials/nav') %>
+        
+        <div class="card">
+            <h2>Machine Coding Rounds</h2>
+            <p>Backend system implementations for interviews. Each scenario includes requirements, constraints, and clean solutions.</p>
+        </div>
+        
+        <div class="topic-grid">
+            <% scenarios.forEach(scenario => { %>
+                <div class="topic-card">
+                    <h3><%= scenario.name %></h3>
+                    <p><%= scenario.description %></p>
+                    <a href="<%= scenario.path %>">Implement →</a>
+                </div>
+            <% }); %>
+        </div>
+        
+        <%- include('partials/footer') %>
+    </div>
+</body>
+</html>

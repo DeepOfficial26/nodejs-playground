@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Runtime Architecture - Node.js Interview Playground</title>
+    <%- include('partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('partials/header') %>
+        <%- include('partials/nav') %>
+        
+        <div class="card">
+            <h2>Node.js Runtime Architecture</h2>
+            <p>Understanding V8 engine, libuv, and how Node.js works under the hood.</p>
+            
+            <h3>Runtime Information</h3>
+            <div class="code-block">
+                <pre><code>Node.js Version: <%= info.nodeVersion %>
+V8 Version: <%= info.v8Version %>
+Platform: <%= info.platform %>
+Architecture: <%= info.arch %>
+Process ID: <%= info.pid %>
+Uptime: <%= Math.floor(info.uptime) %> seconds</code></pre>
+            </div>
+            
+            <h3>Memory Usage</h3>
+            <div class="code-block">
+                <pre><code>Heap Used: <%= (info.memoryUsage.heapUsed / 1024 / 1024).toFixed(2) %> MB
+Heap Total: <%= (info.memoryUsage.heapTotal / 1024 / 1024).toFixed(2) %> MB
+RSS: <%= (info.memoryUsage.rss / 1024 / 1024).toFixed(2) %> MB</code></pre>
+            </div>
+            
+            <h3>System Information</h3>
+            <div class="code-block">
+                <pre><code>CPU Cores: <%= info.systemInfo.cpus %>
+Total Memory: <%= (info.systemInfo.totalMemory / 1024 / 1024 / 1024).toFixed(2) %> GB
+Free Memory: <%= (info.systemInfo.freeMemory / 1024 / 1024 / 1024).toFixed(2) %> GB</code></pre>
+            </div>
+            
+            <div class="key-points">
+                <h3>Key Concepts:</h3>
+                <ul>
+                    <li><strong>V8:</strong> JavaScript engine - compiles JS to machine code</li>
+                    <li><strong>libuv:</strong> Event loop, thread pool, async I/O</li>
+                    <li><strong>Single-threaded:</strong> Event loop runs on one thread</li>
+                    <li><strong>Multi-threaded I/O:</strong> libuv thread pool handles I/O operations</li>
+                    <li><strong>Non-blocking:</strong> I/O operations don't block event loop</li>
+                </ul>
+            </div>
+        </div>
+        
+        <%- include('partials/footer') %>
+    </div>
+</body>
+</html>

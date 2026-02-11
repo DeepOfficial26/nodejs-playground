@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Queue - Node.js Interview Playground</title>
+    <%- include('partials/styles') %>
+</head>
+<body>
+    <div class="container">
+        <%- include('partials/header') %>
+        <%- include('partials/nav') %>
+        
+        <div class="card">
+            <h2>Job Queue - Machine Coding Round</h2>
+            
+            <h3>Requirements</h3>
+            <ul>
+                <li>In-memory job queue</li>
+                <li>Retry mechanism with exponential backoff</li>
+                <li>Priority support</li>
+                <li>Failure handling</li>
+                <li>Worker processing</li>
+            </ul>
+            
+            <h3>Constraints</h3>
+            <ul>
+                <li>Single process (can extend to distributed)</li>
+                <li>Configurable retry attempts</li>
+                <li>Configurable delay between retries</li>
+            </ul>
+            
+            <div class="key-points">
+                <h3>Interview Discussion Points:</h3>
+                <ul>
+                    <li>Priority queue implementation</li>
+                    <li>Exponential backoff strategy</li>
+                    <li>Dead letter queue for failed jobs</li>
+                    <li>Distributed job queue with Redis/RabbitMQ</li>
+                    <li>Job persistence and recovery</li>
+                </ul>
+            </div>
+        </div>
+        
+        <%- include('partials/footer') %>
+    </div>
+</body>
+</html>
